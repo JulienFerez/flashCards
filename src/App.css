@@ -42,4 +42,9 @@
   padding: 10em;
   border: solid;
   text-align: center;
+  background-color: white;
+}
+
+body {
+  background-color: #282c34;
 }

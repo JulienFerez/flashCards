@@ -1,7 +1,7 @@
 import React from "react";
 
-const flashCardOneEntry = (): JSX.Element => {
+const FlashCardOneEntry = (): JSX.Element => {
   return <>Helloo</>;
 };
 
-export default flashCardOneEntry;
+export default FlashCardOneEntry;
