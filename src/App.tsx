@@ -11,9 +11,9 @@ function App() {
     <>
       <FlashCardMentale mentaleFlashCardData={arrayData} />
 
-      <FlashCardOneEntry />
+      <FlashCardOneEntry mentaleFlashCardData={arrayData} />
 
-      <FlashCardResponseMultiple />
+      {/* <FlashCardResponseMultiple /> */}
     </>
   );
 }
