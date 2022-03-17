@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 type mentaleFlashCard = { question: string; answer: string }[];
 type propsFlashCardMentale = { mentaleFlashCardData: mentaleFlashCard };
@@ -6,59 +6,42 @@ type propsFlashCardMentale = { mentaleFlashCardData: mentaleFlashCard };
 const FlashCardMentale = ({
   mentaleFlashCardData,
 }: propsFlashCardMentale): JSX.Element => {
-  let [showResponse, setShowResponse] = React.useState(true);
-  let [generateNumberRandom, setGenerateNumbeerRandom] = React.useState(false);
+  let number = numberAleatoire(0, 2);
 
-  console.log("True or False GenerateRandom", generateNumberRandom);
+  const [click, setclick] = React.useState(true);
+  const [randomNumber, setRandomNumber] = React.useState(0);
+  const [question, setQuestion] = React.useState(
+    mentaleFlashCardData[number].question
+  );
+  const [response, setResponse] = React.useState(
+    mentaleFlashCardData[number].answer
+  );
+  const [affichage, SetAffichage] = React.useState(question);
 
   function numberAleatoire(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  let number = numberAleatoire(0, 2);
-  if (generateNumberRandom === true) {
-    numberAleatoire(0, 2);
-    number = numberAleatoire(0, 2);
-  } else {
-    console.log("consoleLog retour du else");
-  }
+  // const goodQuestion = mentaleFlashCardData[number].question;
+  // const goodAnswer = mentaleFlashCardData[number].answer;
 
-  // const number = numberAleatoire(0, 2);
-  console.log("randome numbeer", number);
+  useEffect(() => {
+    if (click === false) {
+      SetAffichage(response);
+    } else {
+      SetAffichage(question);
 
-  const goodQuestion = mentaleFlashCardData[number].question;
-  // console.log(goodQuestion);
-  const goodAnswer = mentaleFlashCardData[number].answer;
-  // console.log(goodAnswer);
+      setRandomNumber(Math.floor(Math.random() * 10));
+      setQuestion(mentaleFlashCardData[number].question);
+      setResponse(mentaleFlashCardData[number].answer);
+    }
+  }, [click, mentaleFlashCardData, number, question, response]);
 
-  if (showResponse) {
-    return (
-      <div
-        className="Contour"
-        onClick={(event) => {
-          setShowResponse((showResponse = false));
-          setGenerateNumbeerRandom(true);
-        }}
-      >
-        {goodQuestion}
-      </div>
-    );
-  } else {
-    return (
-      <div
-        className="Contour"
-        onClick={() => {
-          setShowResponse((showResponse = true));
-        }}
-      >
-        {goodAnswer}
-        <p></p>
-        <p>
-          <button onClick={() => setGenerateNumbeerRandom(true)}>Next</button>
-        </p>
-      </div>
-    );
-  }
+  return (
+    <div className="Contour" onClick={() => setclick(!click)}>
+      {affichage}
+    </div>
+  );
 };
 
 export default FlashCardMentale;
