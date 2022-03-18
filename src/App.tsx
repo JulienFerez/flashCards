@@ -3,7 +3,7 @@ import React from "react";
 import "./App.css";
 import FlashCardMentale from "./components/flashCardMentale";
 import FlashCardOneEntry from "./components/flashCardOneEntry";
-import FlashCardResponseMultiple from "./components/flashCardOneEntry";
+import FlashCardResponseMultiple from "./components/flashCardResponseMultiple";
 import { arrayData } from "./data/questionAnswer";
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
 
       <FlashCardOneEntry mentaleFlashCardData={arrayData} />
 
-      {/* <FlashCardResponseMultiple /> */}
+      <FlashCardResponseMultiple mentaleFlashCardData={arrayData} />
     </>
   );
 }
